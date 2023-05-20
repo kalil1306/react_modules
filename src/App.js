@@ -18,9 +18,6 @@ function App() {
   const [state, setState] = useState("kalil")
   return (
     <div className="App">
-      {/* <Basic 
-      name={state}
-      />
       <Basic 
       name={state}
       />
@@ -30,13 +27,11 @@ function App() {
       <Basic 
       name={state}
       />
+      <Basic 
+      name={state}
+      />
 
-      <button onClick={()=> setState("New Name from component")}>Change new Name</button> */}
-
-      <GreatGrandFather />
-
-    
-
+      <button onClick={()=> setState("New Name from component")}>Change new Name</button>
 
     </div>
   );
@@ -118,41 +113,24 @@ function Basic({name}){
 
 */
 
+
 export default App;
 
+function Basic({name}){
+  
+  const [show, setShow] = useState(true);
 
-function GreatGrandFather(){
+  //Mounting - if the dependency array is empty it will work or execute only one time
+  // but its not empty it will continuously
+  useEffect(()=>{
+    console.log("I'm Mounted", show)
+  }, [show])
+
+
   return (
     <div>
-      GreatGrandFather
-      <GrandFather />
-    </div>
-  )
-}
-
-function GrandFather(){
-  return (
-    <div>
-      GrandFather
-      <Father />
-    </div>
-  )
-}
-
-function Father(){
-  return (
-    <div>
-      Father
-      <Father/>
-    </div>
-  )
-}
-
-function child(){
-  return (
-    <div>
-      child
-      <child/>
+      <h1>{name}</h1>
+      <button onClick={() => setShow(!show)}>Change Name</button>
     </div>
   )
 }
